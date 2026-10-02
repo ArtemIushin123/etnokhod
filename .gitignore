@@ -1,0 +1,17 @@
+# IDE
+.idea/
+
+# Зависимости и сборка
+node_modules/
+dist/
+build/
+
+# Секреты
+.env
+.env.*
+
+# Мусор
+*.log
+.DS_Store
+Thumbs.db
+__pycache__/
