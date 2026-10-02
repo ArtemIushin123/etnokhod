@@ -1,5 +1,3 @@
-// Шаг 1: берём регионы РФ из Natural Earth admin-1, добавляем 4 новых субъекта,
-// проецируем в LCC (+lat_1=52 +lat_2=64 +lon_0=100) и сохраняем в плоских координатах.
 const fs = require('fs');
 const g = JSON.parse(fs.readFileSync('adm1.geojson', 'utf8'));
 
@@ -12,7 +10,7 @@ const t = f => Math.tan(Math.PI / 4 + f / 2);
 const n = Math.log(Math.cos(f1) / Math.cos(f2)) / Math.log(t(f2) / t(f1));
 const F = Math.cos(f1) * Math.pow(t(f1), n) / n;
 function proj([lon, lat]) {
-    if (lon < 0) lon += 360;                  // Чукотка за 180-м меридианом
+    if (lon < 0) lon += 360;
     const r = F / Math.pow(t(lat * rad), n), a = n * (lon - l0) * rad;
     return [r * Math.sin(a), -r * Math.cos(a)];
 }
@@ -22,7 +20,7 @@ const out = [];
 for (const f of g.features) {
     const p = f.properties, iso = p.iso_3166_2;
     if (!(p.adm0_a3 === 'RUS' || NEW[iso])) continue;
-    let id = iso === 'RU-X01~' ? 'RU-YAN' : iso;           // мелкий остров в Обской губе → ЯНАО
+    let id = iso === 'RU-X01~' ? 'RU-YAN' : iso;
     const name = NEW[iso] || (iso in FIX ? FIX[iso] : p.name_ru);
     out.push({ type: 'Feature', properties: { id, name: name || '' },
         geometry: { type: f.geometry.type, coordinates: walk(f.geometry.coordinates) } });

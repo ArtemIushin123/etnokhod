@@ -1,17 +1,13 @@
-# IDE
 .idea/
 
-# Зависимости и сборка
 node_modules/
 dist/
 build/
 
-# Секреты
 .env
 .env.*
 CLAUDE.md
 
-# Мусор
 *.log
 .DS_Store
 Thumbs.db

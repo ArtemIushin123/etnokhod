@@ -10,8 +10,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&family=Ruslan+Display&display=swap" rel="stylesheet">
     <style>
-        /* Палитра команды: #4B0082 индиго, #A52A2A красно-коричневый, #DAA520 золото,
-           #FFEBCD кремовый, #6495ED васильковый. Зелёный оставлен только для «верно/пройдено». */
         :root{
             --primary:#4B0082; --primary-d:#33005c; --sky:#fff3e0; --paper:#FFEBCD;
             --green:#2a8a4f; --gold:#DAA520; --red:#A52A2A; --accent:#6495ED;
@@ -21,7 +19,6 @@
         *{box-sizing:border-box}
         html{scroll-behavior:smooth}
         body{margin:0;min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;font:17px/1.55 'PT Sans',system-ui,-apple-system,'Segoe UI',sans-serif;color:var(--ink);background:var(--paper)}
-        /* фон экрана: картина на весь экран, неподвижная (через ::before — работает и на телефонах) */
         body::before{content:"";position:fixed;inset:0;z-index:-1;background:var(--paper) center/cover no-repeat}
         body[data-bg=main]::before{background-image:url(assets/bg-main.webp)}
         body[data-bg=map]::before{background-image:url(assets/bg-map.webp)}
@@ -32,7 +29,6 @@
         button{font:inherit;color:inherit}
         :focus-visible{outline:3px solid var(--gold);outline-offset:2px}
 
-        /* шапка */
         .top{background:var(--primary-d)}
         .band{display:block;width:100%;height:24px}
         .bar{background:var(--card);border-bottom:2px solid var(--gold);box-shadow:0 2px 12px rgba(43,26,51,.12)}
@@ -44,13 +40,11 @@
         .status .mini{width:46px;height:46px;flex:none;overflow:hidden;border-radius:50%;background:var(--sky);border:2px solid var(--gold);display:flex;justify-content:center}
         .status .mini .av{margin-top:2px}
         .status .mini .av.hatted{margin-top:12px}
-        /* монеты-награды (картинки) */
         .coin{display:block;width:34px;height:34px;flex:none}
         .coin.lg{width:56px;height:56px}
 
         .wrap{flex:1 0 auto;width:100%;max-width:1040px;margin:0 auto;padding:clamp(12px,2.5vh,28px) 20px clamp(12px,2.5vh,24px)}
 
-        /* кнопки */
         .btn{display:inline-block;border:0;background:var(--primary);color:#fff;padding:12px 24px;border-radius:10px;font-weight:700;cursor:pointer;border-bottom:4px solid var(--primary-d)}
         .btn:hover{background:#3c006b}
         .btn:disabled{background:#cdbfae;border-bottom-color:#b3a390;cursor:not-allowed}
@@ -58,7 +52,6 @@
         .btn.ghost:hover{background:var(--sky)}
         .row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
 
-        /* старт */
         .start{display:grid;grid-template-columns:1.5fr 1fr;gap:32px;align-items:center}
         .start h1{font-size:clamp(30px,min(4.6vw,7vh),60px)}
         .lead{font-size:clamp(17px,2.4vh,20px);max-width:44ch;margin:clamp(8px,1.6vh,16px) 0 clamp(12px,2.4vh,24px);color:var(--ink)}
@@ -70,7 +63,6 @@
         .hero-card:has(input:checked){border-color:var(--primary);background:var(--sky);box-shadow:0 0 0 3px var(--gold)}
         .hero-card:has(input:focus-visible){outline:3px solid var(--accent);outline-offset:3px}
         .hero-card span{display:block;font-weight:700;margin-top:6px}
-        /* цвет волос: круглые образцы-радиокнопки */
         .hair{border:0;padding:0;margin:0}
         .hero-foot{display:flex;align-items:flex-end;justify-content:space-between;gap:14px 20px;flex-wrap:wrap}
         .hair-opts{display:flex;gap:10px;flex-wrap:wrap}
@@ -81,13 +73,11 @@
         .swatch:has(input:checked){border-color:var(--primary);background:var(--sky)}
         .swatch:has(input:focus-visible){outline:3px solid var(--accent);outline-offset:3px}
         .medal{width:100%;height:auto;max-width:min(380px,55vh);justify-self:center;filter:drop-shadow(0 10px 24px rgba(43,26,51,.35))}
-        /* герой: картинка + шапка-бурек поверх головы */
         .av{--h:200px;position:relative;display:inline-block;flex:none;height:var(--h);line-height:0}
         .av img{display:block;height:var(--h);width:auto}
         .av.hatted{margin-top:calc(var(--h) * .1)}
         .av .hat{position:absolute;height:auto;max-width:none}
 
-        /* карта */
         .map-head{padding:12px 22px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
         .map-note{text-align:right;margin:2px 8px 0;font-size:12px}
         .map-head p{color:var(--muted);margin-top:6px}
@@ -98,7 +88,7 @@
         .mk.locked text{font-size:12px;font-weight:400;fill:#6e5a4c;stroke-width:4px}
         .mk.locked .dot{opacity:.85}
         .mk-s{transform:scale(var(--mk,1))}
-        .mk .hit{fill:transparent}                 /* невидимая зона нажатия вокруг значка */
+        .mk .hit{fill:transparent}
         .lead line{stroke:#8a7560;stroke-width:1;stroke-dasharray:2 2}
         .lead circle{fill:#8a7560}
         .mk:focus-visible{outline:none}
@@ -107,7 +97,6 @@
         @keyframes pulse{0%{transform:scale(1);opacity:.7}100%{transform:scale(2.6);opacity:0}}
         .note{font-size:14px;color:var(--muted)}
 
-        /* регион */
         .region{display:grid;grid-template-columns:220px 1fr;gap:28px;align-items:start}
         .guide{position:sticky;top:16px;text-align:center}
         .guide-img{display:block;width:auto;max-width:210px;height:clamp(240px,calc(100vh - 250px),580px);margin:0 auto;filter:drop-shadow(0 8px 14px rgba(43,26,51,.35))}
@@ -119,8 +108,6 @@
         .crumbs{padding:0}
         .crumbs li.on{background:var(--primary);border-color:var(--primary);color:#fff}
         .crumbs li.past{background:var(--sky)}
-        /* Реплика проводника: рамка-картинка режется на 9 частей (border-image),
-           уголки с орнаментом и хвостик не растягиваются. Хвостик слева снизу — к Данияру. */
         .bubble{position:relative;margin-bottom:12px;font-size:18px;min-height:122px;
             border:1px solid transparent;
             border-image:url(assets/bubble-guide.webp) 40 205 150 125 fill / 20px 102px 75px 62px stretch;
@@ -142,8 +129,6 @@
         .story p{font-size:18px;font-family:Georgia,'PT Serif',serif;line-height:1.65;max-width:60ch}
         .story .pg{font-size:14px;color:var(--muted);margin-top:10px}
 
-        /* тест */
-        /* текст вопроса — обычным жирным шрифтом: длинные вопросы декоративным шрифтом занимали полэкрана */
         .qcard h2{font:700 clamp(19px,2.8vh,23px)/1.3 'PT Sans',sans-serif;color:var(--ink);margin-bottom:12px}
         .prog{height:8px;background:var(--sky);border-radius:8px;overflow:hidden;margin-bottom:12px}
         .prog i{display:block;height:100%;background:var(--green)}
@@ -155,7 +140,6 @@
         .opt:disabled{cursor:default}
         .explain{flex:1 1 300px;padding:10px 16px;border-radius:12px;background:var(--sky)}
         .qfoot{display:flex;align-items:center;gap:12px 16px;flex-wrap:wrap;margin-top:12px}
-        /* задание «знак к названию» */
         .match{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;max-width:420px;margin:6px 0 10px}
         .mcell{display:flex;flex-direction:column;align-items:center;gap:6px;font-weight:700;font-size:16px;text-align:center}
         .slot.next{border:2px dashed var(--accent);box-shadow:0 0 0 3px rgba(100,149,237,.25)}
@@ -170,7 +154,6 @@
         .palette .tile:hover{border-color:var(--red)}
         .lab{font-weight:700;font-size:15px;color:var(--muted)}
 
-        /* награда */
         .reward{text-align:center}
         .reward h2{font-size:clamp(26px,min(5vw,5.5vh),40px)}
         .reward-body{display:flex;justify-content:center;align-items:center;gap:12px 36px;flex-wrap:wrap}
@@ -178,10 +161,8 @@
         .reward .stage-av .av{--h:clamp(150px,calc(100vh - 440px),280px)}
         .reward-side{display:flex;flex-direction:column;align-items:center}
         .hero-card .av{--h:clamp(120px,calc(100vh - 530px),190px)}
-        /* кнопка «Мой кабинет» в шапке */
         .me-btn{display:flex;align-items:center;gap:10px;background:none;border:2px solid transparent;border-radius:30px;padding:1px 12px 1px 1px;cursor:pointer;color:var(--muted);font-size:inherit;text-align:left}
         .me-btn:hover,.me-btn.on{border-color:var(--gold);background:var(--sky)}
-        /* кабинет ученика */
         .profile{display:grid;grid-template-columns:280px 1fr;gap:20px;align-items:start}
         .prof-hero{text-align:center;display:flex;flex-direction:column;align-items:center;gap:4px}
         .prof-av .av{--h:clamp(150px,calc(100vh - 480px),300px)}
@@ -200,7 +181,6 @@
         .gift{background:var(--sky);border:1px solid var(--line);border-radius:14px;padding:10px 18px 10px 10px;display:flex;align-items:center;gap:12px;text-align:left}
         .unlock{margin:0 auto 14px;max-width:46ch}
 
-        /* чат */
         .ask{position:fixed;right:18px;bottom:18px;z-index:20;background:var(--primary);color:#fff;border:0;border-bottom:4px solid var(--primary-d);border-radius:30px;padding:12px 22px;font-weight:700;cursor:pointer;box-shadow:0 6px 20px rgba(43,26,51,.25)}
         .chat{position:fixed;right:18px;bottom:18px;z-index:30;width:min(390px,calc(100vw - 24px));height:min(580px,82vh);background:var(--white);border:2px solid var(--primary);border-radius:18px;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 10px 40px rgba(43,26,51,.3)}
         .chat[hidden],.ask[hidden]{display:none}
@@ -210,7 +190,6 @@
         .chat-h button{background:none;border:0;color:#fff;font-size:26px;line-height:1;cursor:pointer}
         .msgs{flex:1;overflow:auto;padding:14px;display:flex;flex-direction:column;gap:10px;background:#9a2c2a url(assets/bg-chat.webp) 0 0/260px}
         .m{flex:none;max-width:88%;padding:9px 13px;border-radius:14px;font-size:16px}
-        /* ответ Данияра — рамка-картинка с хвостиком слева сверху */
         .m.bot{align-self:flex-start;border:1px solid transparent;border-radius:0;
             border-image:url(assets/bubble-chat.webp) 165 85 75 145 fill / 43px 22px 20px 38px stretch;
             padding:34px 20px 16px 20px;min-height:76px;min-width:130px}
@@ -223,7 +202,6 @@
         .chat input:focus{border-color:var(--primary);outline:none}
         .chat form .btn{padding:9px 16px}
 
-        /* прочее */
         #toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(20px);background:var(--primary-d);color:#fff;padding:11px 20px;border-radius:12px;opacity:0;pointer-events:none;transition:.25s;z-index:40;max-width:calc(100vw - 32px);text-align:center}
         #toast.on{opacity:1;transform:translateX(-50%)}
         dialog{background:var(--white);color:var(--ink);border:2px solid var(--gold);border-radius:18px;padding:24px;max-width:440px}
@@ -234,7 +212,6 @@
         footer button{background:none;border:0;text-decoration:underline;cursor:pointer;color:var(--muted);padding:0}
 
         .panel > p + p,[role=tabpanel] > p + p{margin-top:8px}
-        /* вход в класс */
         .join{background:var(--white);border:1px solid var(--line);border-radius:16px;padding:clamp(14px,2.2vh,20px) 20px;max-width:480px;display:grid;gap:6px}
         .join-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
         .join-row > div{display:grid;gap:4px}
@@ -250,7 +227,6 @@
         .linkbtn{background:none;border:0;padding:0;color:var(--primary);font-weight:700;text-decoration:underline;cursor:pointer}
         .start h1.hi{font-size:clamp(28px,min(4.4vw,6.5vh),50px)}
 
-        /* кабинет учителя */
         .t-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:16px;margin-bottom:20px}
         .t-head p{color:var(--muted);margin-top:6px;max-width:60ch}
         .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-bottom:16px}
@@ -302,7 +278,6 @@
             .guide{position:static;display:flex;align-items:flex-end;gap:12px;text-align:left}
             .guide-img{width:96px;height:132px;object-fit:cover;object-position:top;margin:0;flex:none}
             .plate{margin:0 0 6px}
-            /* на телефоне Данияр над репликой — берём рамку с хвостиком вверх */
             .bubble{font-size:17px;min-height:0;
                 border-image:url(assets/bubble-chat.webp) 165 85 75 145 fill / 50px 26px 23px 44px stretch;
                 padding:34px 20px 16px 20px}
@@ -318,7 +293,6 @@
             .lead{font-size:17px}
             .hero-card .av{--h:clamp(110px,calc(100vh - 560px),180px)}
             .reward .stage-av .av{--h:clamp(150px,calc(100vh - 520px),220px)}
-            /* на телефоне кнопка «Спросить Данияра» висит внизу — оставляем под неё место */
             body[data-bg=bashkortostan] footer{margin-bottom:72px}
         }
         @media (max-width:760px){
@@ -390,11 +364,6 @@
 <dialog id="dlg"><h3 id="dlgT"></h3><p id="dlgP"></p><button class="btn" id="dlgOk">Понятно</button></dialog>
 
 <script>
-    /* =====================================================================
-       1. КОНТЕНТ (всё, что нужно править, лежит здесь)
-       Чтобы добавить регион: скопируйте блок REGIONS.bashkortostan
-       и добавьте точку на карте в MAP.
-       ===================================================================== */
 
     const MAP = [
         { id:'bashkortostan', name:'Башкортостан', x:237, y:347, side:'r' },
@@ -402,11 +371,9 @@
         { id:'dagestan',      name:'Дагестан',     x:73,  y:409, side:'r' },
         { id:'tuva',          name:'Тыва',         x:520, y:486, side:'r' },
         { id:'yakutia',       name:'Якутия',       x:717, y:270, side:'r' },
-        { id:'crimea',        name:'Крым',         x:22,  y:288, side:'b', callout:{ x:17, y:313 } }   // значок чуть ниже Крыма, за границей
+        { id:'crimea',        name:'Крым',         x:22,  y:288, side:'b', callout:{ x:17, y:313 } }
     ];
 
-    /* Демо-класс для кабинета учителя. В настоящем продукте эти данные
-       приходят с сервера. У учеников только ники: личные данные не собираем. */
     const DEMO_CLASS = {
         code:'KN-5B', name:'5 «Б»',
         students:[
@@ -434,12 +401,10 @@
         kurai: { title:'Значок «Курай»', desc:'Награда за первый пройденный регион.', img:'assets/coin-kurai.webp' }
     };
 
-    /* Герои: пол × цвет волос, картинка assets/hero-<пол>-<волосы>.webp.
-       hat — где сидит шапка-бурек, в % от картинки героя: cx — центр, w — ширина, b — низ шапки. */
     const HEROES = {
         genders:{
             m:{ title:'Путешественник',  hat:{ cx:49,   w:78, b:12.8 } },
-            f:{ title:'Путешественница', hat:{ cx:60,   w:58, b:11.5 } }   // голова у девочек правее центра картинки: волосы раскиданы влево
+            f:{ title:'Путешественница', hat:{ cx:60,   w:58, b:11.5 } }
         },
         hair:{
             dark:{ title:'Тёмные',  color:'#6b3f2a' },
@@ -496,7 +461,6 @@
                     ]}
             ],
             quiz:[
-                /* match: названия узоров (из раздела «Узоры») в этом порядке; к каждому ученик подбирает знак */
                 { type:'match', topic:'Узоры', say:'Начнём с узоров. Подбери к каждому названию его знак.',
                     title:'Подбери знак к названию узора',
                     match:['diamond','horns','sun','heart'],
@@ -523,9 +487,6 @@
         }
     };
 
-    /* =====================================================================
-       2. ИИ-ПРОВОДНИК
-       ===================================================================== */
     const AI_PROXY_URL = '';
     const GUIDE_PROMPT = 'Ты Данияр, юный башкир, проводник по Башкортостану в образовательной игре. Отвечай дружелюбно, коротко (2–4 предложения), простым языком и только достоверно. Если не уверен, так и скажи. Не выдумывай факты.';
 
@@ -549,11 +510,6 @@
     const SUGGESTIONS = ['Что такое курай?','Почему бешбармак — «пять пальцев»?','Расскажи про Урал-батыра','Какой язык у башкир?'];
     const RUDE_REPLY = 'Давай общаться вежливо. Спроси меня про узоры, еду, праздники или легенды.';
 
-    /* ---------- фильтр грубых слов (ник и чат) ----------
-       Защита «от дурака» в прототипе. В полной версии ник и сообщения дополнительно проверяет сервер.
-       Ловит обходы: латиницу вместо кириллицы (xyй), цифры (3, 0, @), транслит (huy), точки и пробелы
-       между буквами (х.у.й), повторы букв (хууууй). Корни привязаны к началу слова и приставкам,
-       чтобы не задевать обычные слова: «психую», «застрахую», «хлебало», «оскорбление», «сукно». */
     const RU_PREFIX = '(?:вы|за|по|на|у|до|от|о|раз|разъ|рас|съ|подъ|под|при|про|объ|недо|долбо|изъ|ни)?';
     const RUDE_RU = [
         new RegExp('^' + RU_PREFIX + 'ху[йяеию]'),
@@ -566,36 +522,30 @@
     ];
     const RUDE_EN = [/^[hx]u[iyj]|^[hx]uesos/, /pizd|pezd/, /bl[yi]a[dt]/, /^eba[tln]|^ebl/, /^suka|^suki$/, /muda[kc]/, /pid[oa]r/, /gandon|gondon/,
         /zalup/, /fuck|shit|bitch|cunt|dick|porn|sex|nigg|whore|slut/];
-    // буквы, похожие на русские, и «leet»-цифры
     const TO_CYR = { a:'а', b:'в', c:'с', e:'е', h:'н', k:'к', m:'м', o:'о', p:'р', t:'т', x:'х', y:'у', u:'и', n:'п', r:'г',
         '0':'о', '1':'и', '3':'з', '4':'ч', '6':'б', '@':'а', '$':'с' };
     const TO_LAT = { '0':'o', '1':'i', '3':'e', '4':'a', '5':'s', '@':'a', '$':'s', '!':'i' };
     function rudeWords(text){
         const raw = String(text).toLowerCase().replace(/ё/g, 'е');
-        // слова; подряд идущие одиночные буквы склеиваем: «х у й», «х.у.й» → «хуй»
         const parts = raw.split(/[^a-zа-я0-9@$!]+/).filter(Boolean), words = [];
         for(let i = 0; i < parts.length; i++){
             if(parts[i].length === 1){ let w = ''; while(i < parts.length && parts[i].length === 1) w += parts[i++]; i--; words.push(w); }
             else words.push(parts[i]);
         }
-        words.push(parts.join(''));                       // всё сообщение без разделителей
-        return words.map(w => w.replace(/(.)\1+/g, '$1'));   // хууууй → хуй
+        words.push(parts.join(''));
+        return words.map(w => w.replace(/(.)\1+/g, '$1'));
     }
     function isRude(text){
         const words = rudeWords(text), all = words.length - 1;
         return words.some((w, i) => {
             const cyr = [...w].map(c => TO_CYR[c] || c).join('');
             const lat = [...w].map(c => TO_LAT[c] || c).join('');
-            // склейку всего сообщения проверяем только по «длинным» корням, иначе ловятся стыки слов
             const ru = i === all ? [/пизд/, /бляд/, /пид[оа]р/, /г[ао]ндон/, /залуп/] : RUDE_RU;
             const en = i === all ? [/pizd/, /fuck/, /pid[oa]r/] : RUDE_EN;
             return ru.some(r => r.test(cyr)) || en.some(r => r.test(lat));
         });
     }
 
-    /* =====================================================================
-       3. ГРАФИКА (SVG)
-       ===================================================================== */
     const G = {
         diamond:'<polygon points="24,5 43,24 24,43 5,24" fill="none" stroke="currentColor" stroke-width="3"/><polygon points="24,15 33,24 24,33 15,24" fill="currentColor"/>',
         horns:'<g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M24 42V22C24 12 16 8 10 12C5 16 7 24 13 24c4 0 5-5 2-7"/><path d="M24 22c0-10 8-14 14-10 5 4 3 12-3 12-4 0-5-5-2-7"/></g>',
@@ -604,9 +554,6 @@
         heart:'<g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M24 38.5L10 28C6 25 5 21 5 17C5 12 8.5 9.5 12 9.5H17C19.5 9.5 21.5 11 21.5 13S19.5 16.5 17 16.5"/><path d="M24 38.5L38 28C42 25 43 21 43 17C43 12 39.5 9.5 36 9.5H31C28.5 9.5 26.5 11 26.5 13S28.5 16.5 31 16.5"/></g>',
         wave:'<g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M4 16q5-9 10 0t10 0 10 0 10 0"/><path d="M4 32q5-9 10 0t10 0 10 0 10 0"/></g>'
     };
-    /* Карта РФ: 89 субъектов, Natural Earth admin-1 1:10m + ДНР, ЛНР,
-       Запорожская и Херсонская области. Проекция +proj=lcc +lat_1=52 +lat_2=64 +lon_0=100,
-       ширина 1000. Пересобрать: tools/map/README (скрипты step1–step3). */
     const RU_MAP = {
         viewBox:'0 0 1000 551',
         outline:'M468.4 502.8L472.4 500.9L478.1 500L481.2 497.6L484.7 497.5L488 494.9L491.4 495.2L492.9 493.3L495.6 495.9L498.6 496.9L508.9 498.7L509.5 503L511.7 506.4L519 508.6L522.4 507.1L526.7 509.1L531.9 509.4L534.7 511.7L537.1 509.2L541.8 507.3L543.6 501.2L541.3 499.5L539.6 494.6L541.9 488.4L544.3 485.1L546.7 484.3L549.5 479.7L552.6 482.3L558.3 485.1L562.5 485.1L569.9 488.8L575.5 489.5L578.2 500.7L580.5 502.4L589.4 505.8L593.9 505.3L596.2 503.1L603.9 500.2L609.6 500.8L612 502L615.5 501.2L620.8 505.1L625.3 505L627.1 505.3L628.4 509.8L633.3 512.8L639.8 511.7L647.9 513L649.4 511.6L652.8 512.5L657.6 508.6L663.5 507L666.7 504.8L671.8 503L672.6 499.6L675.2 496.3L680.5 491.7L684.5 491.4L690.8 494.7L694 494.1L697.6 491.4L707.6 494.3L712.3 494.6L715.2 491.6L718.1 486.8L723.2 483.4L721.1 476.9L722.9 469.5L723.5 461.2L726.8 456.7L727 453.7L724.9 451.1L724.9 448.4L722.2 447.9L720.1 445.3L723 438.6L725.6 437.8L731.2 433.8L742.8 428L748 428.5L752.8 430L755.5 428.1L760 428.4L764.7 431.4L771.4 436.9L771.7 439.3L779 445.8L780.2 449.2L784.6 451.9L787.2 457L789.7 457.4L791.3 462.6L795.1 464.3L797.5 464.1L801.7 461.2L806.1 462.6L812 461.4L814.9 463.5L818.6 464.4L821.6 462.8L822.3 466.1L826.7 469.2L826.4 471.9L832 475.7L836.6 473.6L844 469.2L846.1 462L849.1 460.6L850.2 457.6L854.5 453.1L857.8 453.1L858.2 456.3L862 459.3L861.6 463.9L860.1 467.5L862.9 475.5L862.7 478.1L864.6 480.5L863.6 482.9L865 490.9L863.6 492.6L865.4 497.7L864.7 499.6L854.9 501.5L853 501L851.9 507.3L848.4 510.8L850.5 512.2L856.1 519L856.9 522.8L860.4 527.3L861 535.1L856.4 539.1L861.8 542.6L861.8 539.7L865.2 532.7L865.5 527.1L868.3 528L870.6 523.5L873.2 527.5L876.9 526.6L881.6 527L884.5 523L887.1 521L888.2 517.3L893.6 507.5L894.3 501.9L893.4 497L893.8 493.1L895.2 491.1L895 486.1L896 479L897.4 475.4L898.6 467.9L898.9 460.7L896.8 449.8L897.6 442.7L896.4 437L898.2 426.9L892.6 410.5L889.3 408L887.9 404.2L884.3 400.3L882.9 394.9L880.2 390.2L880.8 388.3L880.4 380.1L879.2 377.1L875.4 376.7L874.5 373.8L870.8 369.7L871.1 366.8L857.7 364L856.4 362.2L852.4 362.3L848.2 365.2L844.7 365.8L847.3 369.5L848.7 375.5L844.5 377.5L840.9 380.6L840.6 376.2L836.1 371.2L834.8 374.7L837.7 377.6L834.6 380.1L830.5 370.4L823 375.1L818.8 375.3L817.3 373.4L819.7 367.7L820.6 362.3L822.3 358.6L824.2 350.2L824.8 336.2L825.9 330.8L827.9 326.1L827.5 323L829.4 319.2L827.7 311.7L829.8 306.4L829.6 298.1L832.8 292L836.1 288.7L842.6 284.2L845.8 280.8L850.1 282.2L849.5 277.1L852.6 276.2L856.8 273.7L860.3 269.4L863.6 269L861.8 263.4L863 260.2L868.6 257.7L875.7 253.5L878 254.6L877.2 259.2L880.1 260.8L883.2 257.5L883.7 254.2L887.2 252.7L886.3 247.5L891.4 245.9L891.9 242.1L895.6 239.1L891.4 237.3L888.4 239.4L884.3 237.5L882.9 229.3L883.4 221.1L881.9 219L881.6 214L879.1 210.6L879.8 204.6L886.4 194.5L889.8 195.5L892 190.4L894.2 195.9L897.2 198L900.2 196.9L903 199.4L904.2 196.7L902 188.7L901.2 180.7L903.6 179.3L899.6 174.5L894.8 170L896.2 165L897.9 162.2L900.1 164.2L900.7 167.7L906.7 172.7L907.9 175.7L910.4 175.4L912.1 180.9L913.7 183.3L912.3 193.7L914.4 195.7L914.3 198.7L916.2 206.4L917 215.3L918.8 217.7L920.8 225.9L920.9 233.9L918.8 236.3L919.9 239.6L918.8 243.8L921.5 245.4L922.8 248.2L923.1 255.5L924.6 258.8L928.7 265L935.5 272.6L944.8 279.4L951.5 283.3L961.6 290.7L968.3 293.9L980.4 302.9L982.4 302.6L985.5 305.4L984.6 293L983.2 285.9L981.2 281.4L976.4 277.7L975.6 271.8L978.1 264.4L975.4 261.7L972.4 260.5L969.5 256L969.1 248.8L974.1 242.8L972.4 237.6L967.3 237L962.6 233.7L958.7 227.3L959.3 223.5L962.6 223.9L963.6 219.6L957.8 216.1L954.8 218.4L948.4 213.2L947 207.8L941.6 209.2L942.5 212.2L939.1 213.4L937.3 212.3L933 205.4L932.3 199.3L930 199.1L924.5 190.9L923 187.5L926.3 184.2L930.5 181.6L928.3 179.2L929.2 170.8L935.3 174.6L932.7 166.8L933.7 159.2L937.4 153.3L941.2 151.4L946 152.3L948.5 150.3L943.7 146.1L944.2 141.9L942.7 139.3L943.4 135.2L940.4 126.8L939.5 122.2L939.4 115.3L938.1 106.4L938.3 102.1L937.1 99.4L937.8 94.8L940.2 90.8L945.3 85.6L941.9 81.1L937.6 81.7L935.1 80.1L930.8 83.1L928.3 81L920 79.8L919.5 82.1L915.6 83.9L911.5 81.7L911.9 86.8L907.1 87.8L910.1 82.4L912.8 80.8L915.9 75.8L915.3 71L913.4 67L913.1 64.8L907.8 60.4L905 62L900.9 60.6L901.7 56.3L905.3 57L908.9 55.7L912.1 56.1L913.9 51.6L912.6 48.5L917.1 43.8L923.3 45L925.7 43.9L928 39.8L933.2 37.4L936.8 33.1L935.8 28.5L932.5 30.1L929.3 28.5L927.9 24.5L923 23.6L922.8 14.9L919.7 13.3L917.1 8L913.1 11.9L907.8 14.9L903.2 16.7L903.2 20.9L899.3 24.6L900.2 27.5L906.4 28.3L905.1 31.3L893.5 31.7L889.1 31L886.3 33L886.7 35.7L882.1 36.3L878.4 39.8L874.7 40.8L872.1 43.3L869.2 43L864.2 47.1L856.4 50.3L855 52.6L847.8 58.3L839 70L835.2 75.8L830.6 80.6L836.7 84.2L844.2 86.1L845.2 90.5L844 93.9L840.6 93.1L835.2 96.2L831.4 94.1L827.5 94.8L828.7 99.8L824.3 104.1L822.3 107.6L817.8 109.1L818 110.7L814.4 116L814.7 122.3L819 124.8L816.3 126.4L810.4 122L808.4 123.7L804.1 124.4L801.3 119.7L795.8 117.6L789.3 119L785.4 121.3L780.2 126.6L776.1 135L772.5 139.8L764.2 138.4L757.4 140.9L754.3 139.3L754.1 136.7L750.5 135.7L745.2 137.4L741.2 140.5L742.2 148.8L740.1 148.9L738.2 145.9L741.2 145.2L740.5 141.4L733.4 142.8L718.8 150L718.4 154.3L714.1 157.9L714.1 161.1L717.7 160.8L718.5 164.4L722.7 169.5L717.8 169.6L715.8 172.3L717.3 174.9L714.6 176.1L707.6 176.1L702.5 183.2L697.2 182.8L694.3 180.4L693.1 183.4L695.3 194.6L694.8 196.9L689.9 196.4L683.9 193.1L682.1 190.8L674.1 184.1L678.5 184.1L679.1 181.5L676.2 179.3L674.3 180.2L670.8 179L670.6 175.3L674.2 171.8L669.3 170.9L666.3 168.6L659.5 170.3L657.5 171.5L651.3 169.8L648.5 174.6L651.2 178.5L651 183L648.5 182.3L642.9 185.6L633.8 185.6L631 184.1L630.2 179.8L626.4 180.9L618.2 181.2L610.2 186.6L610.5 183.2L604.3 183.5L602 182.2L596.8 180.9L596.6 185.3L600.6 183.8L600.9 184.8L596.8 188.9L591.8 191.5L589.4 193.8L583.8 194.1L586.5 189.1L591.4 185.1L592.9 181.5L595.9 178.5L596 175.9L601.8 170.9L602.7 167.6L605.1 165.5L606.8 161L605.2 157.7L606.2 152.8L604.7 152L602.9 147.5L596.2 142.7L588.8 142.8L584.6 145.3L583.5 147.1L580.2 146.7L581.6 140.1L579.2 140.1L575.6 137.3L577 134.3L572.6 130.7L570.6 130.5L565 135.5L561.2 141.7L562.3 144.7L561.7 148.3L556.6 149L555.7 153.9L553.4 152.4L547.3 156.7L544.9 153.8L542.5 152.8L536.7 152.8L535.8 156.7L527.6 159L526.2 158.3L519.7 160.4L516.2 163.7L512.4 165L510.7 168.5L508.9 169.3L505.3 174.8L508 176.5L507.2 180.3L493.9 180.9L488.1 179.3L483.4 179.3L480.9 181.3L480.9 188L478.9 192.9L480.2 196L484 198.1L483.2 200.6L487.2 205.3L487.6 208.6L484.3 213L484.5 223.9L480.3 225L483 217.8L479.4 215L480.8 211.5L483.4 210.7L486.5 207.3L485 205.5L479.9 205.3L473 193.4L469.5 192.3L465.7 193.4L466.6 196.9L463.3 198.3L461.7 194.6L457.4 194.8L456.9 200L461.2 205.5L463.6 206.7L463.8 211.1L461.2 210.2L461 207.5L454.1 203.7L451.8 201.4L453.6 199L454.6 193.2L457.8 190.1L455.9 187.9L453.9 190.9L446.9 192.2L442.9 196.2L444 199.5L443.4 210.1L439.1 213.4L435.9 218.5L435.9 223.4L434 226.1L437.9 229.1L442.3 228.2L447.4 232.1L450.6 236.7L449.6 240.1L449.8 245.6L446.5 246.2L444.6 250.4L442.9 250.1L446.1 244.5L447.3 240.6L445.3 236.6L445 233.1L439 232.6L434.7 233.6L432.6 237.3L433.3 240.5L431 246.8L425 250.1L423.4 253.7L420.6 255.3L414.6 255.7L412.2 259.3L410 259.4L406.5 255.9L402.5 254.5L398.8 250L399.5 245.6L403.5 247.1L404.1 251.8L406.7 253.4L410.3 253.2L412.4 250.4L416.3 248.3L418.8 244.8L424.6 241.6L425.9 237L430 234.5L427.5 226.9L429.7 222.7L431 217.9L432.8 215.9L434.4 209.6L436.3 208.6L439.1 202.9L439.6 199.8L438.3 196.5L438.6 193L440.5 192.6L446.7 185.3L448.1 178.2L445.3 175L436.4 171.9L434.5 173.1L427.2 182.9L423.2 185.7L417.8 186.4L413.8 190.8L416 193.5L411.5 199.8L407 204.9L410.5 210.6L409.5 218.1L411.7 220.6L404.5 226.9L402.1 217.1L399.1 209.9L396.6 206.5L395.8 203.2L392.7 197.9L383.4 189.1L378.9 190.6L378.5 197.2L377.4 199.7L373.7 201.2L370.4 199.9L367.5 203.3L365.7 201L367.1 198.4L369.7 197.8L369.4 193.6L364.6 192.7L359.7 194L357.5 191.1L352 188.2L344.5 188.4L347.5 178.4L341.3 178.5L336.6 176.9L321.8 174.9L319.4 175.9L316.9 173.6L310.2 176.2L308.4 178.3L303.9 176.8L300.3 172.3L302 168.8L301.3 164.8L306.8 162.5L312.8 166.5L314.9 163L315.9 157.9L314.6 154.7L310.2 149.8L308.1 153.5L300.5 158.8L296.1 161.2L295.7 166.8L289.6 170.4L285.7 172.7L286.4 166.2L284.1 164.6L283.6 161.1L275.7 161.7L273.1 160L265.7 159.2L263.1 160.4L260.5 167.4L257.4 171L253.6 167L253.7 164.9L251.5 157.5L251.4 150.2L246.9 150.4L243.3 157L245.7 159.3L245.6 161.7L241.7 164.6L237.7 162.4L236.7 157.5L238.3 151.2L236.3 149.7L236.6 146.3L242.7 141.1L245.2 136.4L248.7 136.7L252.1 134.9L253.6 131.4L253.1 126L254.6 122.1L254.4 121.4L254.1 120.6L256.3 119.2L260.2 129.5L259.7 133.1L263 140.8L264.3 146.9L266 149.9L269.6 152.6L276.2 155L282.9 154.5L285.6 153.5L287.3 150.4L291.6 146.1L291.6 138.5L290.7 137L291.3 131L290.3 130.3L291.9 124.4L292.1 115.5L291.4 110.5L289.2 108.1L286.8 98.3L289.8 98.8L290.5 92.3L286 91.6L285.7 88.6L281.7 89.2L275.8 86.1L273.6 86.8L264.6 87.4L261.4 90.5L261.6 94.1L258.8 99.9L256.4 100.7L248.2 100.6L244.7 104.2L240.1 110.3L236 114L233.9 112.6L228 116.8L226.2 116.4L220.3 123.2L220.1 126.5L217.3 127.8L212.8 126.8L211.1 131.4L210.4 137L208.2 140.8L202.3 141.9L196.9 141L187.3 140.4L182.4 139.5L172.4 136.7L170.2 138.5L168.7 146L169.7 147.9L168.1 151L166.9 147.5L163.4 147.1L162.3 144.5L159.6 142.7L157 144.2L150.1 145.5L146.5 145.2L140.5 149.1L137.5 152.2L131.9 152.6L130.8 157.2L125.3 158.7L125.4 160.9L123.1 163.9L117.8 168.2L119.4 170.1L120.7 175.9L117.9 178.2L122.8 182L122.3 188.3L118.5 189.6L116.5 192.7L112.7 192.9L112.4 196.7L108.5 200.5L108.7 204.3L105.7 206.3L107 212.3L105.4 215.5L99.4 214.5L96.8 208.2L94.3 208.5L93.5 211.5L88.6 215.6L86.1 218.6L86.9 221.3L92 222.4L92.9 225.6L95.5 226.6L98.1 230.8L95.7 235.1L94.9 238.7L92.1 238.1L89.2 241.6L89.3 246.3L91.2 248.6L89.6 251.6L85.2 256.2L84.9 259.3L87.8 261.5L87 263.8L88.9 266.8L94.6 270.7L92.3 275.5L92.1 279L83.8 283.3L79.4 281.4L76 281.8L73 278.8L68.7 284.2L65.5 285.8L62 285.4L60.2 283.6L60.3 276.5L55.7 270.9L52.2 274.1L49.2 274.9L45.4 270.5L42.7 266.2L40.9 261.2L34.4 265.1L26.8 260.2L21.2 261.5L20.1 265.4L27.1 276.3L25.1 278.5L18.2 274.3L13.8 272.5L14.5 276.3L14.1 280.6L15 283.6L12.3 285.4L8 286.1L8 290.2L9.1 292.2L13.2 293.9L15.8 293.6L20 297.1L26.2 299.2L26.4 302.6L30.6 306.6L34.3 302.3L30.8 298.8L27.8 297.2L30 290.1L33.9 285.2L36.9 286.5L37.4 288L37.4 288.2L45.2 289.8L46.9 291.9L53.9 296.6L55.6 298.7L59.2 298.9L62.9 303.5L70.6 309.8L67.1 310.3L62.9 308.8L59.8 307.7L55.7 304.7L53.9 305.7L53.9 311.4L49.6 310.4L46.1 311.7L43.5 310.9L41.4 314.2L37.6 310.1L36.1 306.7L33.4 309.4L34.1 313.1L32.3 317.9L34.2 321.9L33.5 325.6L35.2 329.5L35.5 334L33.6 348.3L37.1 348.6L39.5 352.6L41.9 361.8L44.9 366.2L47.3 367.9L50.1 374L50.5 378.8L51.9 383.3L50.8 386.1L54.7 387.2L57.6 389.6L60.1 393.3L60.4 397L62.6 400.3L59.3 401.8L59.6 406.1L63.5 413.8L62.1 422.9L65.7 428.2L69.5 427L73 428.1L77.1 427L79 414.5L80.5 410.6L80.2 407.4L87.9 400.2L90.3 394.2L88.8 388.1L93 386.5L94.6 387.4L105 382.7L107.3 382.2L112.4 385.8L115.2 385.5L117 387.5L119.8 386.5L124.1 386.6L122 378.3L126.7 380.8L127.7 375.6L129.5 371.4L129.7 364.9L126.3 360.3L125.2 356.5L128.3 353.8L125.8 348.7L129.1 347.1L132.3 345.7L135.8 345.6L136.5 341.8L141.9 337.9L146.6 338.3L150.5 335.9L152.3 336.4L152.1 341.1L150.7 345.7L151.3 347.3L156.2 348L160 341.3L166.7 343L169.5 340.6L171.7 342.6L177 343.7L183.8 341.6L187 348.8L189.9 348.6L193.7 350.2L192.3 354L196.7 357.2L198.6 360.9L198.7 368.3L199.8 371.1L202.3 370.1L203.7 377.5L205 380.8L209.4 380.9L215.1 379.4L219.8 382.4L219.4 385.6L222.5 387L224.1 385.2L229.1 390.3L227.7 393.2L228.7 395.7L233.6 401.4L237.7 399L238.5 402.3L241.2 404.6L246.8 406.2L252 401.6L252.2 399.3L246.9 392.8L247.9 390.4L246.4 386.4L251.9 387.6L255.9 387.1L256.4 381.1L261.8 380.2L264 382.5L268.5 382.6L263.9 377.2L266.3 374.6L265.2 372.4L269.2 368.9L278.3 374.5L284.5 376.1L289.8 377.1L296.7 379.6L302.1 379.1L305.4 381.3L309.2 381.8L318.1 384.4L322.4 385.1L324.6 382.6L328.7 382.4L335 385.7L337.5 389.9L340.2 388.9L342.6 393.1L342 398L338.6 405.6L345.6 407L348.9 411L354 415.6L351.1 417.5L351.5 419.8L355.6 419.8L358 421.3L365 421L371.4 419.1L380.4 418.8L376.8 423.3L383.4 434.6L385.8 445.2L388.9 462.3L390.3 472.7L394.6 471.6L395.8 468.4L397.9 467.8L402.4 473.9L402.1 477L407 478.6L419.2 477.9L422 480.3L423.5 483.9L423.6 489.1L429.2 493L430.2 500L437.3 502.4L442.3 499.6L443.4 501.3L443.6 506L447.2 510.6L452.3 510.2L455.1 506.8L460.9 508L464.6 506L468.5 505.5L468.4 502.8ZM85.7 125.8L81 126.6L77.6 118.1L70.2 118.1L78.2 140.3L85.3 138L86.6 135.5L84.7 132.3L85.7 125.8ZM834.8 360.3L830.9 360.5L832.4 364.6L835.6 366.6L836.3 363.5L834.8 360.3ZM869.2 349.2L873.1 352.2L875.8 357.6L873.4 359L871.6 362.8L875.4 365.9L878.2 371L878.6 374.1L882.3 379.2L888.5 382.1L892.9 385.5L895.7 392.6L897.9 394L903.2 401.3L908.3 411.2L908.2 412.8L913.8 416.3L917 419.9L918.2 425L923.3 430.7L925.1 437L930.4 442.6L932.5 441.2L929.7 433.2L934.4 428.3L928.8 423.3L925.5 422.7L921.2 420.2L919.2 417.4L913.9 400.7L915.3 397.9L921.6 394.8L913.4 388.1L909.5 386L897.9 375.2L895.8 375.8L888.6 367.6L887.1 362.6L883.2 358L876.2 353.2L873.5 348.8L869.2 349.2ZM986.9 408.5L984.9 408.7L984.6 413L982 416.3L980.6 423.8L982.6 424.4L984.7 417.8L984.6 414.4L986.9 408.5ZM990.4 390.6L989.5 394L989.5 401.5L991.1 401.1L992 395L990.4 390.6ZM984.6 311.4L982.7 312.4L984.3 315.9L983.2 318.5L984.5 322L987 316.4L984.6 311.4ZM831 87.2L826 90.6L827.3 94.1L832.9 91.5L831 87.2ZM831.7 33.9L833.6 40L835.7 42.2L839 42.6L838.6 36.7L840.8 34.4L841.3 27.9L839.6 24.9L834.2 27.4L832.4 29.9L831.7 33.9ZM469.3 189.8L467 187.8L462.7 191.3L465.4 192.3L469.3 189.8ZM447.5 171.2L446.5 166.3L442.4 166.1L441.2 171.2L447.5 171.2ZM338.1 166.1L337.6 159L335.9 157.6L332.1 158.1L328.3 161.4L327.9 164.5L333.5 166.7L338.1 166.1ZM382.3 188.9L381.5 177.4L378.5 177.8L376.5 181.9L378.5 185.2L377.6 187.5L379.9 189.5L382.3 188.9ZM720.6 139.3L718.5 136.9L711.1 135.9L708.5 138.4L709.6 144.3L714.4 144.1L720.9 141.6L720.6 139.3ZM608.5 172.7L603.4 172.2L602.2 176.6L607.1 178.1L608.5 172.7ZM725.4 101.4L719.9 104.5L716.5 104.6L713.6 106.8L709.6 107.4L711.8 111.9L721.6 111.7L724.9 109.7L727.5 104.8L725.4 101.4ZM707.1 110.2L700.6 110L696.5 112.6L692 111.3L690.2 118.1L684.8 116.6L681.9 118.1L681.7 124.8L685.3 128.2L686.3 131.8L692.2 134.1L696.5 132.8L697.7 129.7L701.6 124L704.6 124.9L707.3 121.6L703.4 119.9L708.5 118L706.3 112.8L707.1 110.2ZM366.1 142.2L364.4 147.1L367.8 147.9L369 151L366.5 155.8L365.5 160.6L370.8 167.3L375.7 171L377.3 167.9L377.2 161L378.6 156L381.4 150.1L388.8 143.3L390.7 144L394.8 140.1L391.7 134.2L383.8 132.7L382 134.7L377.5 135.3L378.1 138L371.5 142L369.3 139.7L366.1 142.2ZM408.8 124.9L404.2 122.1L400.4 127.4L398.5 126.2L395.9 127.7L391.5 127.7L390 133.5L392.1 134.2L395.5 140.1L399.3 139.5L404.4 137.1L405.2 135.5L409.5 133.7L411.1 131.9L414.9 130.6L417.1 131.9L421 130.5L424.1 127.7L430.1 126.5L434.9 127.2L446.2 127.6L454.7 126.9L459.5 122.3L459.7 118.4L455.2 116.4L446.8 119.5L438.4 119L435.4 115.4L429.9 115.2L420.8 116.2L419.8 117.2L414.9 117L413 118.7L409.3 117.1L408.8 124.9ZM472.1 60.6L467.2 57L464.6 58.8L463.7 62L466.4 64.2L470.2 63L472.1 60.6ZM450.9 46.5L450.9 43.1L446.6 41.6L446.3 44.2L439.1 43.8L437.3 46.4L440.8 48.2L445 45.9L447.7 47.5L450.9 46.5ZM452.8 60.1L455 62.5L457.5 59.9L455.4 57.8L452.8 60.1ZM473.8 60.4L472.9 63.4L476.1 64.3L479.5 63.2L480.7 60.1L473.8 60.4ZM475.3 188.5L475 183.7L471.9 186.1L475.3 188.5ZM573.9 117.8L572.9 114.6L571 113.9L569.3 110.1L564.5 105.9L561.8 108.8L559.1 118.3L556 126.3L558.3 127.5L561.8 124.1L566.8 123.6L572.3 121.6L573.9 117.8ZM541.7 97.8L537.2 95.3L535.5 97.5L538.7 101.4L541.7 97.8ZM557.9 111.7L557.1 109.8L558.3 100.2L554.6 97.8L552.1 94.9L545.2 96L543.4 98.4L541.5 103.6L544.3 111.3L549.3 112.3L551.9 115.1L556.5 115L557.9 111.7ZM552.8 86.4L548.5 77.9L546.3 79.9L541.8 81.8L540.3 88.9L538.2 89.4L539.2 94.2L542 96.8L545.6 95L551.1 93.9L550.9 89.6L552.8 86.4ZM938.8 190L935.4 188.8L935.3 193.8L938.6 194.8L938.8 190Z',
@@ -621,16 +568,12 @@
         }
     };
 
-    /* Названия знаков берём из раздела «Узоры» региона: { diamond:'Ромб', ... } */
     const glyphNames = reg => Object.fromEntries(reg.learn.find(t => t.kind === 'glyphs').items.map(it => [it.g, it.title]));
     const glyph = (k, size=44) => `<svg class="glyph" width="${size}" height="${size}" viewBox="0 0 48 48" aria-hidden="true">${G[k]}</svg>`;
 
-    /* Герой-картинка. h — высота в px; без h высоту задаёт CSS через --h (зависит от высоты окна).
-       С шапкой над картинкой добавляется место под бурек. */
     function avatar(g, hair, hat, h){
         const G_ = HEROES.genders[g] || HEROES.genders.m, H_ = HEROES.hair[hair] ? hair : 'dark';
         const f = G_.hat;
-        // низ шапки считаем от высоты картинки героя (--h), а не от контейнера — иначе в кружке-аватарке шапка «взлетает»
         const cap = hat ? `<img class="hat" src="assets/hat-burek.webp" alt="" style="left:${f.cx - f.w/2}%;width:${f.w}%;bottom:calc(var(--h) * ${((100 - f.b) / 100).toFixed(3)})">` : '';
         return `<span class="av${hat?' hatted':''}"${h ? ` style="--h:${h}px"` : ''} role="img" aria-label="${G_.title}${hat?' в меховой шапке':''}">`
             + `<img src="assets/hero-${g}-${H_}.webp" alt="">${cap}</span>`;
@@ -640,9 +583,6 @@
     const medallion = () => `<img class="medal" src="assets/logo.webp" alt="" width="512" height="512">`;
     const coin = (k, cls='') => `<img class="coin ${cls}" src="${REWARDS[k].img}" alt="" width="256" height="256">`;
 
-    /* =====================================================================
-       4. СОСТОЯНИЕ
-       ===================================================================== */
     const KEY = 'karta-narodov-proto-v1';
     const $ = s => document.querySelector(s);
     const app = $('#app');
@@ -652,9 +592,9 @@
         try { d = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch(e) {}
         const s = Object.assign({ nick:null, classCode:null, hero:null, hair:null, unlocked:['bashkortostan'], done:[], rewards:[],
             results:{}, started:false, chatFree:true }, d);
-        if(s.hero && !s.hair) s.hair = 'dark';   // сохранения до выбора цвета волос
-        s.rewards = (s.rewards || []).map(k => k === 'tubetey' ? 'burek' : k);   // старые сохранения
-        if(s.nick && isRude(s.nick)) s.nick = null;      // старое сохранение с грубым ником — войти заново
+        if(s.hero && !s.hair) s.hair = 'dark';
+        s.rewards = (s.rewards || []).map(k => k === 'tubetey' ? 'burek' : k);
+        if(s.nick && isRude(s.nick)) s.nick = null;
         s.screen = 'start';
         return s;
     }
@@ -664,7 +604,7 @@
     }
     function homeScreen(s){ return !s.nick ? 'start' : !s.hero ? 'hero' : 'map'; }
     const esc = t => String(t ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]);
-    const byHero = (m, f) => S.hero === 'f' ? f : m;   // род глагола по выбранному герою
+    const byHero = (m, f) => S.hero === 'f' ? f : m;
     let joinDraft = { code:'', nick:'' }, joinErr = '';
     let S = load();
     let R = freshRegion();
@@ -675,9 +615,6 @@
             q:{ i:0, score:0, picked:null, slots:[], checked:false, wrong:[] } };
     }
 
-    /* =====================================================================
-       5. ОТРИСОВКА
-       ===================================================================== */
     function render(scroll){
         const id = document.activeElement && document.activeElement.dataset ? document.activeElement.dataset.id : null;
         ({ start:rStart, hero:rHero, teacher:rTeacher, map:rMap, region:rRegion, profile:rProfile })[S.screen]();
@@ -696,7 +633,6 @@
         if(!S.nick){ $('#status').innerHTML = ''; return; }
         const inner = (S.hero ? `<div class="mini">${avatar(S.hero,S.hair,hat,110)}</div>` : '')
             + `<span><b>${esc(S.nick)}</b>${S.hero ? `, регионов: ${S.done.length} из ${MAP.length}` : ''}</span>${badges}`;
-        // после выбора героя статус — это кнопка «Мой кабинет»
         $('#status').innerHTML = S.hero
             ? `<button type="button" class="me-btn${S.screen==='profile'?' on':''}" data-act="profile" data-id="profile" title="Мой кабинет: награды и прогресс">${inner}</button>`
             : inner;
@@ -762,7 +698,6 @@
   </section>`;
     }
 
-    /* Строки класса: демо-ученики плюс ученик с этого устройства */
     function classRows(){
         const rows = DEMO_CLASS.students.map(r => ({ ...r }));
         if(S.nick){
@@ -849,9 +784,6 @@
   </section>`;
     }
 
-    /* Значок региона. Открытый и пройденный — крупные, закрытый — маленький и бледный.
-       У мелких регионов (r.callout) значок вынесен в сторону и соединён с регионом линией.
-       Размер значков на экране задаёт CSS (--mk): на телефоне карта мельче, значки крупнее. */
     function marker(r){
         const done = S.done.includes(r.id), open = S.unlocked.includes(r.id);
         const state = done ? 'done' : open ? 'open' : 'locked';
@@ -869,7 +801,6 @@
         const pulse = (r.id==='bashkortostan' && !done) ? `<circle class="pulse" r="14" fill="#DAA520"/>` : '';
         const label = `${r.name}, ${done?'пройден':open?'открыт':'закрыт'}`;
         const at = r.callout || r;
-        // выноска: точка на самом регионе и тонкая линия до значка
         const lead = r.callout ? `<g class="lead" aria-hidden="true"><line x1="${r.x}" y1="${r.y}" x2="${at.x}" y2="${at.y}"/><circle cx="${r.x}" cy="${r.y}" r="2.5"/></g>` : '';
         return `${lead}<g class="mk ${state}" transform="translate(${at.x} ${at.y})" tabindex="0" role="button" data-act="region" data-region="${r.id}" data-id="mk-${r.id}" aria-label="${label}">
     <g class="mk-s"><circle class="hit" r="22"/>${pulse}<circle class="dot" r="${R}" fill="${fill}" stroke="#fff" stroke-width="${big ? 3 : 2}"/>${icon}
@@ -885,7 +816,6 @@
 
     function rMap(){
         const outline = RU_MAP.outline;
-        // рамка расширяется, только если значок-выноска вылезает за край карты
         const [vx, vy, vw, vh] = RU_MAP.viewBox.split(' ').map(Number);
         const minX = Math.min(vx, ...MAP.filter(r => r.callout).map(r => r.callout.x - 10));
         const viewBox = `${minX} ${vy} ${vw + vx - minX} ${vh}`;
@@ -909,7 +839,6 @@
   </section>`;
     }
 
-    /* ---------- кабинет ученика: награды и прогресс ---------- */
     function rProfile(){
         const G_ = HEROES.genders[S.hero] || HEROES.genders.m;
         const res = S.results.bashkortostan;
@@ -948,7 +877,6 @@
   </section>`;
     }
 
-    /* ---------- регион ---------- */
     const STEPS = [['learn','Знакомство'],['quiz','Тест'],['reward','Награда']];
     function crumbs(){
         const order = {intro:-1, learn:0, quiz:1, result:1, reward:2};
@@ -1056,7 +984,6 @@
             }).join('')}</div>
 `;
             if(!st.checked){
-                // знаки и кнопки в одну строку; после проверки знаки прячем — на их месте пояснение
                 const full = q.match.every((_,n)=>st.slots[n]);
                 html += `<p class="lab">Знаки</p>
       <div class="qfoot pal-row"><div class="palette">${pal.map(k=>`<button class="tile" data-act="slot" data-k="${k}" data-id="pal-${k}" aria-label="${names[k]}">${glyph(k,40)}</button>`).join('')}</div>
@@ -1070,9 +997,6 @@
         return html + '</div>';
     }
 
-    /* =====================================================================
-       6. ДЕЙСТВИЯ
-       ===================================================================== */
     app.addEventListener('change', e => {
         const t = e.target;
         if(t.dataset.act==='hero'){ pendingHero = t.value; render(); }
@@ -1194,9 +1118,6 @@
         S = load(); S.screen = 'start'; pendingHero = null; pendingHair = 'dark'; joinDraft = { code:'', nick:'' }; joinErr = ''; R = freshRegion(); closeChat(); applyChatMode(); render(true);
     });
 
-    /* =====================================================================
-       7. ЧАТ С ПРОВОДНИКОМ
-       ===================================================================== */
     const history = [];
     function addMsg(text, who){
         const d = document.createElement('div'); d.className = 'm ' + who; d.textContent = text;
@@ -1219,7 +1140,7 @@
         } else {
             await new Promise(res => setTimeout(res, 450));
         }
-        if(reply && isRude(reply)) reply = null;         // ответ нейросети тоже проверяем
+        if(reply && isRude(reply)) reply = null;
         reply = reply || cannedReply(text);
         history.push({ role:'assistant', content:reply });
         addMsg(reply, 'bot');
@@ -1245,7 +1166,6 @@
         e.preventDefault();
         const v = $('#chatIn').value.trim(); if(!v) return;
         $('#chatIn').value = '';
-        // грубое сообщение не показываем и не отправляем нейросети
         if(isRude(v)){ addMsg('Сообщение скрыто: в нём грубые слова.', 'me hidden'); addMsg(RUDE_REPLY, 'bot'); return; }
         addMsg(v,'me'); askGuide(v);
     })
