@@ -9,6 +9,7 @@ build/
 # Секреты
 .env
 .env.*
+CLAUDE.md
 
 # Мусор
 *.log
