@@ -24,3 +24,6 @@ tools/map/ru-map.js
 
 # Сборка Pages (делает workflow)
 _site/
+
+# Исходники художника (хранятся вне репозитория, нужны только tools/assets/build_assets.py)
+refs/
