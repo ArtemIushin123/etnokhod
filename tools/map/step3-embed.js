@@ -1,7 +1,4 @@
-// Шаг 3: печатает константу RU_MAP для index.html и координаты точек для MAP.
-// Какие регионы нужны в игре: id в игре → код ISO 3166-2 в Natural Earth.
 const m = require('./map-data.json');
-// Регион игры может состоять из нескольких субъектов (массив кодов): Крым = Республика Крым + Севастополь.
 const IDS = { bashkortostan: 'RU-BA', tatarstan: 'RU-TA', dagestan: 'RU-DA', tuva: 'RU-TY', yakutia: 'RU-SA',
               crimea: ['UA-43', 'UA-40'] };
 const list = iso => [].concat(iso);

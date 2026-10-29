@@ -1,9 +1,3 @@
-"""Готовит ассеты игры из refs/ (исходники художника) в assets/ (WebP, обрезка, чистка краёв).
-
-Запуск из корня проекта:  python tools/assets/build_assets.py .
-Нужны: Pillow, numpy, scipy.  Печатает размеры и параметры головы героев
-(по ним подобрана посадка шапки в HEROES.genders[*].hat в index.html).
-"""
 import os, sys, json
 import numpy as np
 from PIL import Image, ImageFilter
@@ -26,12 +20,10 @@ def save(im, name, q=80, **kw):
     print(f'{name:28s} {im.size} {os.path.getsize(p)//1024} KB')
 
 def clean_alpha(im, lo=48, erode=1):
-    """Срезает полупрозрачное свечение/кайму и подъедает край на erode px."""
     a = np.array(im.convert('RGBA'))
     al = a[:, :, 3].astype(np.float32)
     al[al < lo] = 0
     mask = al > 0
-    # убрать мелкие отдельные пятна (остатки фона)
     lab, n = ndimage.label(mask)
     if n > 1:
         sizes = ndimage.sum(mask, lab, range(1, n + 1))
@@ -39,7 +31,6 @@ def clean_alpha(im, lo=48, erode=1):
         al[~keep] = 0
     if erode:
         al = ndimage.grey_erosion(al, size=(2 * erode + 1, 2 * erode + 1))
-    # мягкий край
     al = ndimage.gaussian_filter(al, 0.6)
     a[:, :, 3] = np.clip(al, 0, 255).astype(np.uint8)
     return Image.fromarray(a)
@@ -49,7 +40,6 @@ def bbox_alpha(im, thr=8):
     ys, xs = np.where(a > thr)
     return xs.min(), ys.min(), xs.max() + 1, ys.max() + 1
 
-# ---------- фоны ----------
 for f, n in [('Главный фон.png', 'bg-main.webp'), ('Фон под карту РФ.png', 'bg-map.webp'),
              ('Фон для башкирии.png', 'bg-bashkortostan.webp')]:
     im = src(f).convert('RGB')
@@ -57,7 +47,6 @@ for f, n in [('Главный фон.png', 'bg-main.webp'), ('Фон под ка
 im = src('Фон в чате.png').convert('RGB')
 save(im.resize((500, 500), Image.LANCZOS), 'bg-chat.webp', q=75)
 
-# ---------- круглые картинки на пергаменте: вырезаем круг ----------
 def circle_cut(name, out, size):
     im = src(name).convert('RGB')
     a = np.array(im).astype(int)
@@ -84,19 +73,16 @@ def circle_cut(name, out, size):
 circle_cut('бурек.png', 'coin-burek.webp', 256)
 circle_cut('курай.png', 'coin-kurai.webp', 256)
 
-# ---------- логотип: целиком (скруглённый квадрат на пергаменте) + круг ----------
 logo = circle_cut('лого.png', 'logo.webp', 512)
 fav = logo.resize((64, 64), Image.LANCZOS)
 save(fav, 'favicon.png')
 
-# ---------- шапка для героя ----------
 hat = clean_alpha(src('Бурек для Персонажа.png'), lo=40, erode=1)
 hat = hat.crop(bbox_alpha(hat))
 hat = hat.resize((360, round(360 * hat.height / hat.width)), Image.LANCZOS)
 save(hat, 'hat-burek.webp', q=85)
 info['hatAspect'] = hat.width / hat.height
 
-# ---------- герои: только вид спереди ----------
 heroes = {'m-dark': 'чел браун.png', 'm-light': 'Мальчик блондин.png',
           'f-dark': 'девочка ьраун.png', 'f-light': 'Девочка блондинка.png'}
 info['heroes'] = {}
@@ -104,7 +90,6 @@ for key, f in heroes.items():
     im = clean_alpha(src(f), lo=64, erode=1)
     a = np.array(im)[:, :, 3]
     cols = (a > 8).sum(axis=0)
-    # первый силуэт слева: идём от первого непустого столбца до первого провала
     xs = np.where(cols > 0)[0]
     x0 = xs[0]
     x1 = x0
@@ -119,18 +104,15 @@ for key, f in heroes.items():
     fig = fig.crop(bbox_alpha(fig))
     H = 640
     fig = fig.resize((round(H * fig.width / fig.height), H), Image.LANCZOS)
-    # голова: верхняя часть силуэта до шеи — ищем ширину по строкам
     fa = np.array(fig)[:, :, 3] > 40
     rows = fa.sum(axis=1)
     top = int(np.argmax(rows > 0))
-    # макушка..уровень глаз: берём верхние 20% высоты, ширина головы — макс. ширина там
     band = fa[top: top + int(H * 0.2)]
     bx = np.where(band.any(axis=0))[0]
     info['heroes'][key] = {'w': fig.width, 'h': fig.height, 'top': top,
                            'headL': int(bx.min()), 'headR': int(bx.max())}
     save(fig, f'hero-{key}.webp', q=82)
 
-# ---------- Данияр: убрать белый фон ----------
 im = src('Данияр.png').convert('RGB')
 a = np.array(im).astype(int)
 white = (a.min(axis=2) > 200) & ((a.max(axis=2) - a.min(axis=2)) < 22)
@@ -146,7 +128,6 @@ rgba = rgba.crop(bbox_alpha(rgba))
 rgba = rgba.resize((round(720 * rgba.width / rgba.height), 720), Image.LANCZOS)
 save(rgba, 'guide-daniyar.webp', q=82)
 
-# ---------- пузыри реплик ----------
 for f, n in [('Реплика в чате 1.png', 'bubble-chat.webp'), ('Реплика 2.png', 'bubble-guide.webp')]:
     im = clean_alpha(src(f), lo=200, erode=2)
     im = im.crop(bbox_alpha(im))

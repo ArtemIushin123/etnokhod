@@ -16,3 +16,11 @@ CLAUDE.md
 .DS_Store
 Thumbs.db
 __pycache__/
+
+# Промежуточные файлы пересборки карты (tools/map/README.md)
+tools/map/*.geojson
+tools/map/*.json
+tools/map/ru-map.js
+
+# Сборка Pages (делает workflow)
+_site/

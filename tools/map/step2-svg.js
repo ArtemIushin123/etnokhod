@@ -1,13 +1,12 @@
-// Шаг 2: вписываем карту в ширину 1000, собираем SVG-пути и координаты точек регионов.
 const fs = require('fs');
 const rd = f => JSON.parse(fs.readFileSync(f, 'utf8'));
 const outline = rd('ru-outline.json'), inner = rd('ru-inner.json'), regions = rd('ru-regions.json'), points = rd('ru-points.json');
 
-const W = 1000, PAD = 8, MIN_AREA = 1.5;     // острова меньше 1.5 px² выбрасываем
+const W = 1000, PAD = 8, MIN_AREA = 1.5;
 let x0 = Infinity, x1 = -Infinity, y0 = Infinity, y1 = -Infinity;
 (function w(c) { if (typeof c[0] === 'number') { x0 = Math.min(x0, c[0]); x1 = Math.max(x1, c[0]); y0 = Math.min(y0, c[1]); y1 = Math.max(y1, c[1]); } else c.forEach(w); })(outline.geometries[0].coordinates);
 const k = (W - 2 * PAD) / (x1 - x0), H = Math.ceil((y1 - y0) * k + 2 * PAD);
-const P = ([x, y]) => [+(PAD + (x - x0) * k).toFixed(1), +(PAD + (y1 - y) * k).toFixed(1)];   // y вниз
+const P = ([x, y]) => [+(PAD + (x - x0) * k).toFixed(1), +(PAD + (y1 - y) * k).toFixed(1)];
 
 const area = r => { let s = 0; for (let i = 0, j = r.length - 1; i < r.length; j = i++) s += (r[j][0] + r[i][0]) * (r[j][1] - r[i][1]); return Math.abs(s / 2); };
 function ring(r, close) {
