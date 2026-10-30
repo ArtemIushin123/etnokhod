@@ -134,5 +134,5 @@ for f, n in [('Реплика в чате 1.png', 'bubble-chat.webp'), ('Реп�
     im = im.resize((im.width // 2, im.height // 2), Image.LANCZOS)
     save(im, n, q=85)
     info[n] = im.size
-
+#sss
 print(json.dumps(info, indent=1))
